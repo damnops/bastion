@@ -1,0 +1,7 @@
+#! /bin/bash -e
+#
+cd $(dirname $0)/..
+
+export PROJECTNAME=${1:-${PROJECTNAME:-bastion}}
+
+docker-compose --project-name ${PROJECTNAME} down

@@ -1,0 +1,12 @@
+export CHARSET=UTF-8
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PAGER=less
+export PS1='\h:\w\$ '
+umask 022
+
+UIDO="$(id -u)"
+
+if [ $UIDO -ge 500 ]; then
+	export PATH=~/.bin
+	exec /usr/bin/script -t -a -f -q /var/log/ophis/$USER-$(/bin/date +%Y%m%d%H%M%S).his 2>/var/log/ophis/$USER-$(/bin/date +%Y%m%d%H%M%S).time
+fi

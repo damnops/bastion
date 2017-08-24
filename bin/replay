@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+if [[ $# -lt 2 ]]; then
+	echo "Usage: $(/usr/bin/basename $0) user time [speed]
+  user: user name
+  time: user login time
+  speed: play speed"
+	exit 1
+fi
+
+ls /var/log/ophis/${1}-${2}.time >/dev/null 2>&1 || (
+	echo "No such record"
+	exit 1
+)
+
+/usr/bin/scriptreplay -t /var/log/ophis/${1}-${2}.time /var/log/ophis/${1}-${2}.his ${3}

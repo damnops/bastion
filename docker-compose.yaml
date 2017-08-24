@@ -1,0 +1,10 @@
+version: '2'
+services:
+  bastion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "62222:22"
+    volumes:
+      - "./ophis/:/var/log/ophis"  

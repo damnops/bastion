@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+/bin/ln -s /bin/bash /bin/rbash
+/usr/sbin/adduser -D bastion
+/bin/mkdir -p /home/bastion/.bin && /bin/chown -R bastion.bastion /home/bastion/
+
+cd /home/bastion/.bin
+for f in $(cat /etc/lists); do
+  /bin/ln -s ${f} .
+done
+
+/bin/mkdir -p /var/log/ophis/ && /bin/chmod 777 /var/log/ophis/

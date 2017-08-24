@@ -1,0 +1,14 @@
+#! /bin/bash -e
+#
+
+cd $(dirname $0)/..
+
+export SPECIMG=${1:-^bastion}
+
+IMAGES=$(docker images | grep "${SPECIMG}" | awk '{print $3}' | sort -u )
+
+if [[ ${IMAGES} ]]; then
+  echo ${IMAGES} | xargs docker rmi -f
+fi
+
+exec docker-compose build --force-rm

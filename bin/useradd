@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/sbin/adduser -G bastion -s /bin/rbash -h /home/bastion $@

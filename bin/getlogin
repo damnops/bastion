@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [[ $# -lt 1 ]]; then
+	ls /var/log/ophis/*.time | awk -F'/' '{print $NF}' | awk -F[-.] '{print $1,$2}'
+else
+	ls /var/log/ophis/${1}-*.time >/dev/null 2>&1 || (
+		echo "This user doesn't have any login data"
+		exit 1
+	)
+	ls /var/log/ophis/${1}-*.time | awk -F'/' '{print $NF}' | awk -F[-.] '{print $2}'
+fi
